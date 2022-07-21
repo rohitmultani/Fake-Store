@@ -1,6 +1,4 @@
-import { Fragment } from "react";
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,7 +12,6 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
 
 const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,6 +19,9 @@ const NavBar = () => {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -118,7 +118,12 @@ const NavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="fixed"
-        sx={{ backgroundColor: "black", color: "white",boxShadow:'none',width:'100%'}}
+        sx={{
+          backgroundColor: "black",
+          color: "white",
+          boxShadow: "none",
+          width: "100%",
+        }}
       >
         <Toolbar>
           <IconButton
@@ -145,6 +150,7 @@ const NavBar = () => {
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
+              onClick={handleOpen}
             >
               <Badge badgeContent={4} color="error">
                 <AddShoppingCartIcon />
@@ -175,8 +181,6 @@ const NavBar = () => {
           </Box>
         </Toolbar>
       </AppBar>
-      {/* {renderMobileMenu}
-      {renderMenu} */}
     </Box>
   );
 };

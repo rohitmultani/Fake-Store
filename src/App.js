@@ -1,18 +1,23 @@
 
 import './App.css';
 import Home from './Pages/Home';
-import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+import {Fragment} from 'react'
+import { Router,Routes,Route } from 'react-router-dom';
 import Detail from './Pages/Detail';
-
+import store from './Utils/Store';
+import { Provider } from 'react-redux';
 function App() {
   return (
-    <Router>
+    <Fragment>
+    <Provider store={store}>
+    
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:anything" element={ <Detail/>} />
       </Routes>
-    </Router>
-
+    
+    </Provider>
+    </Fragment>
   );
 }
 

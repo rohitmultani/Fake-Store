@@ -9,7 +9,9 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-const HomeImage =()=>{
+import { useDispatch } from 'react-redux';
+import { upDateName } from '../Utils/Store';
+import { upDateData } from '../Utils/Store';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -53,7 +55,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-    return(
+const HomeImage =()=>{
+  const dispatch = useDispatch();
+  const searchHandler=(e)=>{
+  console.log(e.target.value)
+  dispatch(upDateData(e.target.value));
+  dispatch(upDateName('Search'));}
+return(
         <Fragment>
             <img src={Home} className={classes.im}></img>
             <div className={classes.welcome}>
@@ -64,6 +72,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={searchHandler}
             />
           </Search>
             </div>
